@@ -8,4 +8,8 @@ public class VendaService {
 
     @Autowired
     private VendaRepository vendaRepository;
+
+    public Venda cadastrarVenda(Venda venda){
+        return vendaRepository.save( venda );
+    }
 }
