@@ -1,9 +1,9 @@
 package br.com.maquininha.cartao.maquininha.cartao.cliente;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import br.com.maquininha.cartao.maquininha.cartao.venda.Venda;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "clientes")
@@ -17,6 +17,9 @@ public class Cliente {
     private String email;
     @Column(nullable = false)
     private String senha;
+
+    @OneToMany
+    private List<Venda> vendas;
 
     public Cliente() {
     }
