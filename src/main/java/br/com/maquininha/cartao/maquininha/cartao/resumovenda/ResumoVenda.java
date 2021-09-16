@@ -1,15 +1,23 @@
 package br.com.maquininha.cartao.maquininha.cartao.resumovenda;
 
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import br.com.maquininha.cartao.maquininha.cartao.venda.Venda;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "resumo_vendas")
 public class ResumoVenda {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private double valorTotalVenda;
     private double valorTotalTaxa;
     private double valorTotalLiquido;
+
+    @OneToMany
+    private List<Venda> vendas;
 
     public ResumoVenda() {
     }
