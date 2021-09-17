@@ -26,4 +26,8 @@ public class VendaService {
         }
         throw new RuntimeException("Venda não localizada");
     }
+
+    public void deletarVenda(int id){
+        this.vendaRepository.deleteById(id);
+    }
 }
