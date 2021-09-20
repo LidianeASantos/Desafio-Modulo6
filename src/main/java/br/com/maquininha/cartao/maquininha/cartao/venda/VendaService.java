@@ -33,7 +33,8 @@ public class VendaService {
         this.vendaRepository.deleteById(id);
     }
 
-    public List<Venda> buscarVendaPorDebito(int debito){
-        return vendaRepository.findByVendaOpcaoContais( debito );
+    public List<Venda> buscarVenda(Opcao opcao){
+        var taxa = opcao.taxa;
+        return vendaRepository.findByVendaOpcao( opcao );
     }
 }

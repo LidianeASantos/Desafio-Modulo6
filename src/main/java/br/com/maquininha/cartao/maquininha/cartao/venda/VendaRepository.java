@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface VendaRepository extends CrudRepository<Venda, Integer> {
 
-    List<Venda> findByVendaOpcaoContais(int debito);
+    List<Venda> findByVendaOpcao(Opcao opcao);
 }
