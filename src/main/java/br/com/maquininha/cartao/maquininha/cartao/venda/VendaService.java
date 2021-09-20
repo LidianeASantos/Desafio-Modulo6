@@ -1,8 +1,10 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +31,9 @@ public class VendaService {
 
     public void deletarVenda(int id){
         this.vendaRepository.deleteById(id);
+    }
+
+    public List<Venda> buscarVendaPorDebito(int debito){
+        return vendaRepository.findByVendaOpcaoContais( debito );
     }
 }
