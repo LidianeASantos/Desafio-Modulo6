@@ -35,6 +35,6 @@ public class VendaService {
 
     public List<Venda> buscarVenda(Opcao opcao){
         var taxa = opcao.taxa;
-        return vendaRepository.findAllByVendaOpcao( opcao );
+        return vendaRepository.findAllByOpcao( opcao );
     }
 }
