@@ -44,13 +44,9 @@ public class VendaController {
         vendaService.deletarVenda(id);
     }
 
-    @GetMapping("/{debito}")
-    public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "debito") Opcao debito ){
-        return vendaService.buscarVenda( debito );
+    @GetMapping("/extrato/{opcao}")
+    public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao ){
+        return vendaService.buscarVenda( opcao );
     }
 
-    @GetMapping("/{credito}")
-    public List<Venda> resumoDeVendaPorOpcaoCredito(@PathVariable(name = "credito") Opcao credito){
-        return vendaService.buscarVenda( credito );
-    }
 }
