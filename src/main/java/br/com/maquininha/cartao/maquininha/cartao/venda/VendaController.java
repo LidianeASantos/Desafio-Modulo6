@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/vendas")
@@ -41,5 +42,10 @@ public class VendaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarPeloID(@PathVariable int id){
         vendaService.deletarVenda(id);
+    }
+
+    @GetMapping("/{debito}")
+    public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "debito") Opcao debito ){
+        return vendaService.buscarVenda( debito );
     }
 }
