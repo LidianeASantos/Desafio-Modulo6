@@ -1,18 +1,20 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import javax.validation.constraints.NotBlank;
 
-public class VendaCreditoDto {
+public class VendaDto {
 
     private int id;
     @NotBlank
     private double valor;
     @NotBlank
     private Opcao opcao;
-    @NotBlank
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private int qtdParcela;
 
-    public VendaCreditoDto() {
+    public VendaDto() {
     }
 
     public int getId() {

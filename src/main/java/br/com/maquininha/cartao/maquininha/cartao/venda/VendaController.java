@@ -17,11 +17,11 @@ public class VendaController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping("/{credito}")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public VendaCreditoDto cadastrarVenda(@RequestBody @Valid Venda venda, @PathVariable String credito){
+    public VendaDto cadastrarVenda(@RequestBody @Valid Venda venda){
         Venda vendaModel = vendaService.cadastrarVenda( venda );
 
-        return modelMapper.map( vendaModel, VendaCreditoDto.class );
+        return modelMapper.map( vendaModel, VendaDto.class );
     }
 }
