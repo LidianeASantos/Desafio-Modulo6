@@ -2,7 +2,7 @@ package br.com.maquininha.cartao.maquininha.cartao.venda;
 
 import javax.validation.constraints.NotBlank;
 
-public class VendaDto {
+public class VendaCreditoDto {
 
     private int id;
     @NotBlank
@@ -12,7 +12,7 @@ public class VendaDto {
     @NotBlank
     private int qtdParcela;
 
-    public VendaDto() {
+    public VendaCreditoDto() {
     }
 
     public int getId() {
