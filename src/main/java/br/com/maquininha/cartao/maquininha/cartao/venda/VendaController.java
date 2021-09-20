@@ -48,4 +48,9 @@ public class VendaController {
     public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "debito") Opcao debito ){
         return vendaService.buscarVenda( debito );
     }
+
+    @GetMapping("/{credito}")
+    public List<Venda> resumoDeVendaPorOpcaoCredito(@PathVariable(name = "credito") Opcao credito){
+        return vendaService.buscarVenda( credito );
+    }
 }
