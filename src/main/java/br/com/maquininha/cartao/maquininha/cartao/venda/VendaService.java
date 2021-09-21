@@ -34,7 +34,8 @@ public class VendaService {
     }
 
     public List<Venda> buscarVenda(Opcao opcao){
-        var taxa = opcao.taxa;
+
+        double taxa = opcao.taxa;
         return vendaRepository.findAllByOpcao( opcao );
     }
 }
