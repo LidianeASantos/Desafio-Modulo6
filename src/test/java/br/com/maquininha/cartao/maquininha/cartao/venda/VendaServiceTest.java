@@ -3,6 +3,9 @@ package br.com.maquininha.cartao.maquininha.cartao.venda;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
+import org.mockito.invocation.InvocationOnMock;
+import org.mockito.stubbing.Answer;
+import org.mockito.stubbing.OngoingStubbing;
 import org.modelmapper.internal.bytebuddy.dynamic.DynamicType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -44,6 +47,19 @@ public class VendaServiceTest {
         RuntimeException exception = Assertions.assertThrows(RuntimeException.class,
                 () -> {vendaService.buscarVendaPorId(1);});
         Assertions.assertTrue( exception.getMessage().equals("Venda não localizada"));
+    }
+
+    @Test
+    public void testarDeletarVenda(){
+        Venda venda = new Venda();
+        Answer<Venda> answer = new Answer<Venda>() {
+            @Override
+            public Venda answer(InvocationOnMock invocation) throws Throwable {
+                Venda venda1 = (Venda) invocation.getArgument( 1 );
+                venda1.setId( 1 );
+                return null;
+            }
+        };
     }
 }
 
