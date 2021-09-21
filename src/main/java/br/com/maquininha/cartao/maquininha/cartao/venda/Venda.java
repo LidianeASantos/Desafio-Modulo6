@@ -1,8 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
 import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
-import br.com.maquininha.cartao.maquininha.cartao.resumovenda.ResumoVenda;
-
 import javax.persistence.*;
 
 @Entity
@@ -20,9 +18,6 @@ public class Venda {
 
     @ManyToOne
     private Cliente cliente;
-
-    @ManyToOne
-    private ResumoVenda resumoVenda;
 
 
     public Venda() {
