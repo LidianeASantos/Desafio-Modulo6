@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Optional;
+
 @SpringBootTest
 public class VendaServiceTest {
     @Autowired
@@ -22,7 +24,15 @@ public class VendaServiceTest {
 
         Venda objetoTeste = vendaService.cadastrarVenda(venda);
         Assertions.assertEquals(venda, objetoTeste);
+    }
 
+    @Test
+    public void buscarVendaPorIdCaminhoPositivo(){
+        Venda venda = new Venda();
+        Optional<Venda> vendaOptional = Optional.of(venda);
+        Mockito.when(vendaRepository.findById( Mockito.anyInt())).thenReturn(vendaOptional);
+
+        Assertions.assertEquals( venda, vendaService.buscarVendaPorId(1));
     }
 }
 
