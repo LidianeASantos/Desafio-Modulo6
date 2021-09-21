@@ -17,9 +17,9 @@ public class VendaService {
         return vendaRepository.save( venda );
     }
 
-    public boolean vendaExistente(int id){
+   /* public boolean vendaExistente(int id){
         return vendaRepository.existsById(id);
-    }
+    }*/
 
     public Venda buscarVendaPorId(int id){
         Optional<Venda> optionalVenda = vendaRepository.findById(id);
