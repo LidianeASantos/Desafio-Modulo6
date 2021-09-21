@@ -7,9 +7,9 @@ import javax.validation.constraints.NotBlank;
 public class VendaDto {
 
     private int id;
-    @NotBlank
+    @NotBlank(message = "{validacao.valor.obr}")
     private double valor;
-    @NotBlank
+    @NotBlank(message = "{validacao.opcao.obr}")
     private Opcao opcao;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private int qtdParcela;
