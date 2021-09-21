@@ -23,9 +23,9 @@ public class ControllerAdvisor {
         return new MensagemDeErro(400, erros);
     }
 
-    @ExceptionHandler(Vendanaolocalizadaexception.class)
+    @ExceptionHandler(VendaNaoLocalizadaException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MensagemDeErro manipularVendanaolocalizada(Vendanaolocalizadaexception exception){
+    public MensagemDeErro manipularVendanaolocalizada(VendaNaoLocalizadaException exception){
         List<Erro> erros = Arrays.asList(new Erro(exception.getMessage()));
         return new MensagemDeErro(400, erros);
     }
