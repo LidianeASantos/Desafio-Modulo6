@@ -1,8 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
 import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
-import br.com.maquininha.cartao.maquininha.cartao.resumovenda.ResumoVenda;
-
 import javax.persistence.*;
 
 @Entity
@@ -17,11 +15,9 @@ public class Venda {
     private Opcao opcao;
     private int qtdParcela;
 
-    @ManyToOne
-    private Cliente cliente;
 
     @ManyToOne
-    private ResumoVenda resumoVenda;
+    private Cliente cliente;
 
 
     public Venda() {
@@ -59,4 +55,9 @@ public class Venda {
         this.qtdParcela = qtdParcela;
     }
 
-   }
+    public double getTaxa() {
+        return opcao.taxa;
+    }
+
+
+}

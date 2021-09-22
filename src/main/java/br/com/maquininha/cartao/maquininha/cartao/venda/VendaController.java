@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/vendas")
@@ -28,18 +29,19 @@ public class VendaController {
 
     @GetMapping("/{buscarVendas}")
     public Venda pesquisarVendaPorId(@PathVariable(name = "buscarVendas") int id) {
-        Venda venda;
-        try {
-            venda = vendaService.buscarVendaPorId(id);
-            return venda;
-        } catch (RuntimeException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
+        return vendaService.buscarVendaPorId( id );
+
+     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletarPeloID(@PathVariable int id){
         vendaService.deletarVenda(id);
     }
+
+    @GetMapping("/extrato/{opcao}")
+    public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao ){
+        return vendaService.buscarVenda( opcao );
+    }
+
 }

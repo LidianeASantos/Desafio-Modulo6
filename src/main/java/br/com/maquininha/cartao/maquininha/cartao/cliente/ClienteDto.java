@@ -9,8 +9,13 @@ import javax.validation.constraints.Size;
 
 public class ClienteDto {
 
+<<<<<<< HEAD
     @NotBlank(message = "{validacao.nome.obr}")
     @Size(min = 10, message = "{validacao.nome}")
+=======
+    @NotBlank(message = "{validacao.nome}")
+    @Size(min = 10, message = "{validacao.nome.min}")
+>>>>>>> upstream/master
     private String nome;
     @NotBlank(message = "{validacao.estabelecimento}")
     private String estabelecimento;
