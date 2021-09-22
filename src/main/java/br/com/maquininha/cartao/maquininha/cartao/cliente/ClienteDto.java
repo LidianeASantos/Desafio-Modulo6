@@ -3,17 +3,21 @@ package br.com.maquininha.cartao.maquininha.cartao.cliente;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 public class ClienteDto {
 
-    @NotBlank
+    @NotBlank(message = "{validacao.nome}")
+    @Size(min = 10, message = "{validacao.nome.min}")
     private String nome;
-    @NotBlank
+    @NotBlank(message = "{validacao.estabelecimento}")
     private String estabelecimento;
-    @Email
+    @NotBlank(message = "{validacao.email.obrigatorio}")
+    @Email(message = "{validacao.email}")
     private String email;
-    @NotBlank
+    @NotBlank(message = "{validacao.senha}")
     private String senha;
 
     public ClienteDto() {

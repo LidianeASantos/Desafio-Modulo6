@@ -14,7 +14,7 @@ public class Venda {
     private double valor;
     private Opcao opcao;
     private int qtdParcela;
-    private double taxa;
+
 
     @ManyToOne
     private Cliente cliente;
@@ -56,10 +56,8 @@ public class Venda {
     }
 
     public double getTaxa() {
-        return taxa;
+        return opcao.taxa;
     }
 
-    public void setTaxa(double taxa) {
-        this.taxa = taxa;
-    }
+
 }

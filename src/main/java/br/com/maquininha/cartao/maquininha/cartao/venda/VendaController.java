@@ -29,14 +29,9 @@ public class VendaController {
 
     @GetMapping("/{buscarVendas}")
     public Venda pesquisarVendaPorId(@PathVariable(name = "buscarVendas") int id) {
-        Venda venda;
-        try {
-            venda = vendaService.buscarVendaPorId(id);
-            return venda;
-        } catch (RuntimeException e) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, e.getMessage());
-        }
-    }
+        return vendaService.buscarVendaPorId( id );
+
+     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)

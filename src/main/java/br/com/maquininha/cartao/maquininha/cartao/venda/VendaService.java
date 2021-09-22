@@ -1,5 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.VendaNaoLocalizadaException;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,16 +18,16 @@ public class VendaService {
         return vendaRepository.save( venda );
     }
 
-    public boolean vendaExistente(int id){
+   /* public boolean vendaExistente(int id){
         return vendaRepository.existsById(id);
-    }
+    }*/
 
     public Venda buscarVendaPorId(int id){
         Optional<Venda> optionalVenda = vendaRepository.findById(id);
         if (optionalVenda.isPresent()){
             return optionalVenda.get();
         }
-        throw new RuntimeException("Venda não localizada");
+        throw new VendaNaoLocalizadaException("Venda não localizada");
     }
 
     public void deletarVenda(int id){
