@@ -9,7 +9,7 @@ import javax.validation.constraints.Size;
 
 public class ClienteDto {
 
-    @NotBlank(message = "{validacao.nome.obr}")
+    @NotBlank(message = "{validacao.nome}")
     @Size(min = 10, message = "{validacao.nome}")
     private String nome;
     @NotBlank(message = "{validacao.estabelecimento}")
