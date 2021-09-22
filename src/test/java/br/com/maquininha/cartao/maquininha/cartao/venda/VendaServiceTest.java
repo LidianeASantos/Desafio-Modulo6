@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Optional;
 
 @SpringBootTest
@@ -20,6 +22,7 @@ public class VendaServiceTest {
 
     @MockBean
     private VendaRepository vendaRepository;
+    private br.com.maquininha.cartao.maquininha.cartao.venda.Opcao Opcao;
 
     @Test
     public void testarMetodocadastrarVenda(){
@@ -61,5 +64,16 @@ public class VendaServiceTest {
             }
         };
     }
+
+   /* @Test
+    public void testeBuscarVenda(){
+        Venda venda = new Venda();
+        List<Venda> vendaList = Arrays.asList( venda );
+       Mockito.when(vendaRepository.findAllByOpcao(Mockito.any())).thenReturn(vendaList);
+
+       Venda objetoTeste = (Venda) vendaService.buscarVenda( Opcao);
+
+        Assertions.assertEquals( venda , objetoTeste);
+    }*/
 }
 
