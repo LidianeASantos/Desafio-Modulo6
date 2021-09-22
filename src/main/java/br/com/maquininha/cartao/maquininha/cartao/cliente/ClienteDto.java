@@ -50,4 +50,14 @@ public class ClienteDto {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public Cliente converterDtoemCliente(){
+        Cliente cliente = new Cliente();
+        cliente.setEmail(email);
+        cliente.setEstabelecimento(estabelecimento);
+        cliente.setNome(nome);
+        cliente.setSenha(senha);
+
+        return cliente;
+    }
 }
