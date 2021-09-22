@@ -3,20 +3,20 @@ package br.com.maquininha.cartao.maquininha.cartao.exceptions;
 import java.util.List;
 
 public class MensagemDeErro {
-    private int statuscode;
+    private int statusCode;
     private List<Erro> erros;
 
-    public MensagemDeErro(int statuscode, List<Erro> erros) {
-        this.statuscode = statuscode;
+    public MensagemDeErro(int statusCode, List<Erro> erros) {
+        this.statusCode = statusCode;
         this.erros = erros;
     }
 
-    public int getStatuscode() {
-        return statuscode;
+    public int getStatusCode() {
+        return statusCode;
     }
 
-    public void setStatuscode(int statuscode) {
-        this.statuscode = statuscode;
+    public void setStatusCode(int statusCode) {
+        this.statusCode = statusCode;
     }
 
     public List<Erro> getErros() {
