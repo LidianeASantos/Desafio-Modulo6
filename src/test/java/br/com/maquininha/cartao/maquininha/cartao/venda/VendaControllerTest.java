@@ -11,7 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 @WebMvcTest(VendaController.class)
 public class VendaControllerTest {
     @MockBean
-    private  VendaService vendaServisse;
+    private  VendaService vendaService;
 
     @Autowired
     private MockMvc mockMvc;
