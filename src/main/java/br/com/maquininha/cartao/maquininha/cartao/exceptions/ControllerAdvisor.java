@@ -17,16 +17,20 @@ public class ControllerAdvisor {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public MensagemDeErro manipularExcecoesDeValidacao(MethodArgumentNotValidException exception){
-        List<FieldError> fieldErrors = exception.getBindingResult().getFieldErrors();
-        List<Erro> erros;
-        erros = fieldErrors.stream().map(objeto -> new Erro(objeto.getField()/*, objeto.getDefaultMessage()*/)).collect(Collectors.toList());
+        List<FieldError> fildErros = exception.getBindingResult().getFieldErrors();
+        List<Erro> erros = fildErros.stream().map(objeto -> new Erro(objeto.getField(), objeto.getDefaultMessage()))
+                .collect(Collectors.toList());
+
         return new MensagemDeErro(400, erros);
     }
 
+
+
     @ExceptionHandler(VendaNaoLocalizadaException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public MensagemDeErro manipularVendanaolocalizada(VendaNaoLocalizadaException exception){
-        List<Erro> erros = Arrays.asList(new Erro(exception.getMessage()));
+    public MensagemDeErro manipularVendaNaolocalizada(VendaNaoLocalizadaException exception){
+        List<Erro> erros = Arrays.asList(new Erro(exception.getLocalizedMessage(), exception.getMessage()));
+
+
         return new MensagemDeErro(400, erros);
     }
 }
