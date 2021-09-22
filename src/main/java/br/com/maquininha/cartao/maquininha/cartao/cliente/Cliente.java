@@ -9,11 +9,13 @@ import java.util.List;
 @Table(name = "clientes")
 public class Cliente {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     @Column(unique = true, nullable = false)
     private String nome;
     @Column(unique = true, nullable = false)
     private String estabelecimento;
-    @Id
     private String email;
     @Column(nullable = false)
     private String senha;
@@ -22,6 +24,14 @@ public class Cliente {
     private List<Venda> vendas;
 
     public Cliente() {
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -54,5 +64,13 @@ public class Cliente {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    public List<Venda> getVendas() {
+        return vendas;
+    }
+
+    public void setVendas(List<Venda> vendas) {
+        this.vendas = vendas;
     }
 }
