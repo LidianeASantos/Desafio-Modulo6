@@ -34,6 +34,13 @@ public class ConfiguraçõesDeSeguranca extends WebSecurityConfigurerAdapter {
 
     }
 
-   
+    @Bean
+    CorsConfigurationSource configuracaoDeCors(){
+        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
+    }
+
+
 
 }
