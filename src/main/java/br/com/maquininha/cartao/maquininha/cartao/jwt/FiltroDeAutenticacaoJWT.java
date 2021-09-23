@@ -8,6 +8,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import javax.servlet.FilterChain;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,6 +40,21 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
         }catch (IOException exception){
             throw new RuntimeException(exception.getMessage());
         }
+    }
+
+    @Override
+    protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
+                                            Authentication authResult) throws IOException, ServletException {
+        ClienteLogin clienteLoginLogin = (ClienteLogin) authResult.getPrincipal();
+        String username = clienteLoginLogin.getUsername();
+        int idCliente = clienteLoginLogin.getId();
+
+        String token = jwtComponente.gerarToken(username, idCliente);
+
+        response.setHeader("Access-Control-Expose-Headers", "Authorization");
+        response.addHeader("Authorization", "Token "+token);
+
+
     }
 
 }
