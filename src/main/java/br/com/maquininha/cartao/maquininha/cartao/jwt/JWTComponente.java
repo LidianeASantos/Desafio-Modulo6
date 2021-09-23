@@ -1,5 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.TokenNotValidException;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -30,7 +31,7 @@ public class JWTComponente {
             Claims claims = Jwts.parser().setSigningKey(chave.getBytes()).parseClaimsJws(token).getBody();
             return claims;
         }catch (Exception exception){
-            throw new RuntimeException(exception.getMessage());
+            throw new TokenNotValidException();
         }
     }
 
@@ -46,7 +47,7 @@ public class JWTComponente {
             }else{
                 return false;
             }
-        }catch (RuntimeException exception){
+        }catch (TokenNotValidException exception){
             return false;
         }
     }

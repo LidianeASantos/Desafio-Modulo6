@@ -1,5 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.AccessoNegadoException;
 import br.com.maquininha.cartao.maquininha.cartao.jwt.dtos.LoginDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,7 +40,7 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
             Authentication auth = authenticationManager.authenticate(authToken);
             return auth;
         }catch (IOException exception){
-            throw new RuntimeException(exception.getMessage());
+            throw new AccessoNegadoException();
         }
     }
 

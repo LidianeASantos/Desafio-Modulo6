@@ -1,6 +1,7 @@
 package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
 
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.TokenNotValidException;
 import io.jsonwebtoken.Claims;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -28,7 +29,7 @@ public class FiltroDeAutorizacaoJWT extends BasicAuthenticationFilter {
 
     public UsernamePasswordAuthenticationToken pegarAutenticacao(HttpServletRequest request, String token){
         if (!jwtComponente.isTokenValid(token)){
-            throw new RuntimeException("Token invalido");
+            throw new TokenNotValidException();
         }
 
         Claims claims = jwtComponente.getClaims(token);
@@ -46,7 +47,7 @@ public class FiltroDeAutorizacaoJWT extends BasicAuthenticationFilter {
             try {
                 UsernamePasswordAuthenticationToken auth = pegarAutenticacao(request, token.substring(6));
                 SecurityContextHolder.getContext().setAuthentication(auth);
-            }catch (RuntimeException exception){
+            }catch (TokenNotValidException exception){
                 System.out.println(exception.getMessage());
             }
         }
