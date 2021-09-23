@@ -16,11 +16,11 @@ public class ClienteLoginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<Cliente> usuarioOptional = clienteRepository.findByEmail(username);
+        Optional<Cliente> clienteOptionalOptional = clienteRepository.findByEmail(username);
 
-        usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado"));
+        clienteOptionalOptional.orElseThrow(() -> new UsernameNotFoundException("Cliente não encontrado"));
 
-        Cliente cliente = usuarioOptional.get();
+        Cliente cliente = clienteOptionalOptional.get();
         return new ClienteLogin(cliente.getId(), cliente.getEmail(), cliente.getSenha());
     }
 }

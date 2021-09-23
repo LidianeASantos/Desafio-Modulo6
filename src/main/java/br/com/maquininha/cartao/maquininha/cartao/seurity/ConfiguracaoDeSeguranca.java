@@ -1,6 +1,7 @@
 package br.com.maquininha.cartao.maquininha.cartao.seurity;
 
 import br.com.maquininha.cartao.maquininha.cartao.jwt.FiltroDeAutenticacaoJWT;
+import br.com.maquininha.cartao.maquininha.cartao.jwt.FiltroDeAutorizacaoJWT;
 import br.com.maquininha.cartao.maquininha.cartao.jwt.JWTComponente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -43,7 +44,9 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.GET, GET_PUBLICOS).permitAll()
                 .anyRequest().authenticated();
         http.sessionManagement().sessionCreationPolicy( SessionCreationPolicy.STATELESS);
-        http.addFilter(new FiltroDeAutenticacaoJWT(authenticationManager(), jwtComponente, userDetailsService));
+
+        http.addFilter(new FiltroDeAutenticacaoJWT(authenticationManager(), jwtComponente));
+        http.addFilter(new FiltroDeAutorizacaoJWT(authenticationManager(), jwtComponente, userDetailsService));
 
     }
 

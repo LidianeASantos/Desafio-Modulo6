@@ -35,8 +35,8 @@ public class ControllerAdvisor {
         return new MensagemDeErro(400, erros);
     }
 
-    @ExceptionHandler(AccessoNegadoException.class)
-    public ResponseEntity<?> runtimeHandler(AccessoNegadoException exception){
+    @ExceptionHandler(AcessoNegadoException.class)
+    public ResponseEntity<?> runtimeHandler(AcessoNegadoException exception){
         HashMap<String, String> mensagem = new HashMap<>();
         mensagem.put("mensagemErro", exception.getMessage());
 

@@ -1,13 +1,12 @@
 package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
-import br.com.maquininha.cartao.maquininha.cartao.exceptions.AccessoNegadoException;
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.AcessoNegadoException;
 import br.com.maquininha.cartao.maquininha.cartao.jwt.dtos.LoginDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import javax.servlet.FilterChain;
@@ -21,7 +20,7 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
     private JWTComponente jwtComponente;
     private AuthenticationManager authenticationManager;
 
-    public FiltroDeAutenticacaoJWT(AuthenticationManager authenticationManager, JWTComponente jwtComponente, UserDetailsService userDetailsService) {
+    public FiltroDeAutenticacaoJWT(AuthenticationManager authenticationManager, JWTComponente jwtComponente) {
         this.jwtComponente = jwtComponente;
         this.authenticationManager = authenticationManager;
     }
@@ -40,16 +39,16 @@ public class FiltroDeAutenticacaoJWT extends UsernamePasswordAuthenticationFilte
             Authentication auth = authenticationManager.authenticate(authToken);
             return auth;
         }catch (IOException exception){
-            throw new AccessoNegadoException();
+            throw new AcessoNegadoException();
         }
     }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
                                             Authentication authResult) throws IOException, ServletException {
-        ClienteLogin clienteLoginLogin = (ClienteLogin) authResult.getPrincipal();
-        String username = clienteLoginLogin.getUsername();
-        int idCliente = clienteLoginLogin.getId();
+        ClienteLogin clienteLogin = (ClienteLogin) authResult.getPrincipal();
+        String username = clienteLogin.getUsername();
+        int idCliente = clienteLogin.getId();
 
         String token = jwtComponente.gerarToken(username, idCliente);
 
