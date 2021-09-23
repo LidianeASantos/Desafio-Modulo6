@@ -1,5 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
@@ -22,6 +23,32 @@ public class JWTComponente {
 
         return token;
 
+    }
+
+    public Claims getClaims(String token){
+        try{
+            Claims claims = Jwts.parser().setSigningKey(chave.getBytes()).parseClaimsJws(token).getBody();
+            return claims;
+        }catch (Exception exception){
+            throw new RuntimeException(exception.getMessage());
+        }
+    }
+
+    public boolean isTokenValid(String token){
+        try{
+            Claims claims = getClaims(token);
+            String username = claims.getSubject();
+            Date vencimento = claims.getExpiration();
+            Date dataAtual = new Date(System.currentTimeMillis());
+
+            if (username != null && vencimento != null && dataAtual.before(vencimento)){
+                return true;
+            }else{
+                return false;
+            }
+        }catch (RuntimeException exception){
+            return false;
+        }
     }
 
 }
