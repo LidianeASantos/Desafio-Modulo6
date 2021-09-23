@@ -15,14 +15,11 @@ public class ClienteController {
     @Autowired
     private ClienteService clienteService;
 
-    @Autowired
-    private ModelMapper modelMapper;
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClienteDto cadastrarCliente(@RequestBody @Valid Cliente cliente){
-       Cliente clienteModel = clienteService.cadastrarCliente(cliente );
+    public Cliente cadastrarCliente(@RequestBody @Valid ClienteDto clienteDto){
+       Cliente clienteModel = clienteDto.converterDtoemCliente();
 
-        return modelMapper.map( clienteModel, ClienteDto.class );
+        return clienteService.cadastrarCliente(clienteModel);
     }
 }
