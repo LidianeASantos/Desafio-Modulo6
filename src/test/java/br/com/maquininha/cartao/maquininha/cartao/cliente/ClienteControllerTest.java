@@ -14,7 +14,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-@WebMvcTest(ClienteControllerTest.class)
+@WebMvcTest(ClienteController.class)
 public class ClienteControllerTest {
     @MockBean
     private ClienteService clienteService;
@@ -28,9 +28,9 @@ public class ClienteControllerTest {
     @BeforeEach
     public void setup(){
         clienteDto = new ClienteDto();
-        clienteDto.setNome("Guilherme");
+        clienteDto.setNome("guilherme costa");
         clienteDto.setEmail("guilherme@xablau.com");
-        clienteDto.setEstabelecimento("Mercearia");
+        clienteDto.setEstabelecimento("mercearia");
         clienteDto.setSenha("1234");
 
         objectMapper = new ObjectMapper();

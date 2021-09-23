@@ -1,5 +1,7 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
@@ -22,7 +24,7 @@ public class VendaServiceTest {
 
     @MockBean
     private VendaRepository vendaRepository;
-    private br.com.maquininha.cartao.maquininha.cartao.venda.Opcao Opcao;
+
 
     @Test
     public void testarMetodocadastrarVenda(){
@@ -65,15 +67,15 @@ public class VendaServiceTest {
         };
     }
 
-   /* @Test
+   @Test
     public void testeBuscarVenda(){
         Venda venda = new Venda();
         List<Venda> vendaList = Arrays.asList( venda );
-       Mockito.when(vendaRepository.findAllByOpcao(Mockito.any())).thenReturn(vendaList);
+       Mockito.when(vendaRepository.findAllByOpcao(Mockito.any(Opcao.class))).thenReturn(vendaList);
 
-       Venda objetoTeste = (Venda) vendaService.buscarVenda( Opcao);
+       List<Venda> objetoTeste = vendaService.buscarVenda( Opcao.CREDITO);
 
-        Assertions.assertEquals( venda , objetoTeste);
-    }*/
+        MatcherAssert.assertThat( vendaList, CoreMatchers.is(objetoTeste));
+    }
 }
 
