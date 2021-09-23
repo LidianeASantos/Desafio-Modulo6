@@ -4,20 +4,23 @@ import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
 import br.com.maquininha.cartao.maquininha.cartao.cliente.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
-public class ClienteLoginService {
+@Service
+public class ClienteLoginService implements UserDetailsService {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public UserDetails loadUserByUserName(String username) throws UsernameNotFoundException{
-        Optional<Cliente> clienteOptional = clienteRepository.findByEmail(username);
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        Optional<Cliente> usuarioOptional = clienteRepository.findByEmail(username);
 
-        clienteOptional.orElseThrow(() -> new UsernameNotFoundException("Cliente não encontrado!"));
+        usuarioOptional.orElseThrow(() -> new UsernameNotFoundException("Usuario não encontrado"));
 
-        Cliente cliente = clienteOptional.get();
-        return new ClienteLogin( cliente.getId(), cliente.getEmail(), cliente.getSenha() );
+        Cliente cliente = usuarioOptional.get();
+        return new ClienteLogin(cliente.getId(), cliente.getEmail(), cliente.getSenha());
     }
 }
