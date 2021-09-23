@@ -2,14 +2,17 @@ package br.com.maquininha.cartao.maquininha.cartao.jwt;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
 @Component
 public class JWTComponente {
-    private String chave = "catalisa";
-    private Long milissegundos = 60000l;
+    @Value("${jwt.chave}")
+    private String chave;
+    @Value("${jwt.milissegundos}")
+    private Long milissegundos;
 
     public String gerarToken(String username, int idCliente){
         Date vencimento = new Date(System.currentTimeMillis()+ milissegundos);
