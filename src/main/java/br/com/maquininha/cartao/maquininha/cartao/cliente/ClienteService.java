@@ -12,7 +12,7 @@ public class ClienteService {
     @Autowired
     private ClienteRepository clienteRepository;
     @Autowired
-    BCryptPasswordEncoder bCryptPasswordEncoder;
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Cliente cadastrarCliente(Cliente cliente){
         String ecode = bCryptPasswordEncoder.encode((cliente.getSenha()));

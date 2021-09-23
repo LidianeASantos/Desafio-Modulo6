@@ -31,6 +31,7 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
 
     private static final String[] POST_PUBLICOS = {
             "/vendas",
+            "/login"
     };
 
     @Override
