@@ -17,8 +17,8 @@ public class ClienteService {
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     public Cliente cadastrarCliente(Cliente cliente){
-        String ecode = bCryptPasswordEncoder.encode((cliente.getSenha()));
-        cliente.setSenha(ecode);
+       String ecode = bCryptPasswordEncoder.encode((cliente.getSenha()));
+       cliente.setSenha(ecode);
        return clienteRepository.save( cliente );
 
     }
