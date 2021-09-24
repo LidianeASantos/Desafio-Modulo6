@@ -1,6 +1,7 @@
 package br.com.maquininha.cartao.maquininha.cartao.cliente;
 
 import br.com.maquininha.cartao.maquininha.cartao.venda.Venda;
+import com.fasterxml.jackson.annotation.JsonInclude;
 
 import javax.persistence.*;
 import java.util.List;
@@ -21,6 +22,7 @@ public class Cliente {
     private String senha;
 
     @OneToMany
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private List<Venda> vendas;
 
     public Cliente() {
