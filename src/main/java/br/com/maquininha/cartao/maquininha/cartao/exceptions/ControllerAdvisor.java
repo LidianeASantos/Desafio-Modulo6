@@ -26,11 +26,17 @@ public class ControllerAdvisor {
         return new MensagemDeErro(400, erros);
     }
 
+    @ExceptionHandler(ClienteNaoEncontradoException.class)
+    public MensagemDeErro manipularClienteNaoEncontrado(ClienteNaoEncontradoException exception){
+        List<Erro> erros = Arrays.asList(new Erro(exception.getLocalizedMessage(), exception.getMessage()));
+
+        return new MensagemDeErro(400, erros);
+    }
+
 
     @ExceptionHandler(VendaNaoLocalizadaException.class)
     public MensagemDeErro manipularVendaNaolocalizada(VendaNaoLocalizadaException exception){
         List<Erro> erros = Arrays.asList(new Erro(exception.getLocalizedMessage(), exception.getMessage()));
-
 
         return new MensagemDeErro(400, erros);
     }
