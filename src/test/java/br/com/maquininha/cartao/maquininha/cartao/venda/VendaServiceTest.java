@@ -1,5 +1,8 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
+import br.com.maquininha.cartao.maquininha.cartao.cliente.ClienteService;
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.ClienteNaoEncontradoException;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.junit.jupiter.api.Assertions;
@@ -24,15 +27,21 @@ public class VendaServiceTest {
 
     @MockBean
     private VendaRepository vendaRepository;
+    @MockBean
+    private ClienteService clienteService;
+
+    private Cliente cliente;
 
 
     @Test
-    public void testarMetodocadastrarVenda(){
+    public void testarMetodocadastrarVenda() throws ClienteNaoEncontradoException {
         Venda venda = new Venda();
+        Mockito.when( clienteService.pesquisarClientePorId( Mockito.anyInt() ) ).thenReturn( cliente );
         Mockito.when(vendaRepository.save(Mockito.any(Venda.class))).thenReturn(venda);
 
-        Venda objetoTeste = vendaService.cadastrarVenda(venda);
+        Venda objetoTeste = vendaService.cadastrarVenda(1,venda);
         Assertions.assertEquals(venda, objetoTeste);
+        Assertions.assertEquals( cliente, objetoTeste.getCliente() );
     }
 
     @Test

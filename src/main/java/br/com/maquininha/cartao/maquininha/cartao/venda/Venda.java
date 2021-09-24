@@ -59,5 +59,12 @@ public class Venda {
         return opcao.taxa;
     }
 
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
 
+
+    public Cliente getCliente() {
+        return cliente;
+    }
 }

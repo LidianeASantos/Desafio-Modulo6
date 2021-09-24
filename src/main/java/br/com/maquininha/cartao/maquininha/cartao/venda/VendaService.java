@@ -1,5 +1,8 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
+import br.com.maquininha.cartao.maquininha.cartao.cliente.ClienteService;
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.ClienteNaoEncontradoException;
 import br.com.maquininha.cartao.maquininha.cartao.exceptions.VendaNaoLocalizadaException;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +16,13 @@ public class VendaService {
 
     @Autowired
     private VendaRepository vendaRepository;
+    @Autowired
+    private ClienteService clienteService;
 
-    public Venda cadastrarVenda(Venda venda){
+    public Venda cadastrarVenda(int idCliente, Venda venda) throws ClienteNaoEncontradoException {
+        Cliente cliente = clienteService.pesquisarClientePorId( idCliente );
+
+        venda.setCliente(cliente);
         return vendaRepository.save( venda );
     }
 

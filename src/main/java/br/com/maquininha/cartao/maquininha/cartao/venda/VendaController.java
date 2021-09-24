@@ -1,5 +1,6 @@
 package br.com.maquininha.cartao.maquininha.cartao.venda;
 
+import br.com.maquininha.cartao.maquininha.cartao.exceptions.ClienteNaoEncontradoException;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,10 +20,10 @@ public class VendaController {
     @Autowired
     private ModelMapper modelMapper;
 
-    @PostMapping
+    @PostMapping("/{clienteId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public VendaDto cadastrarVenda(@RequestBody @Valid Venda venda) {
-        Venda vendaModel = vendaService.cadastrarVenda(venda);
+    public VendaDto cadastrarVenda(@RequestBody @Valid Venda venda, @PathVariable int clienteId) throws ClienteNaoEncontradoException {
+        Venda vendaModel = vendaService.cadastrarVenda(clienteId, venda);
 
         return modelMapper.map(vendaModel, VendaDto.class);
     }
