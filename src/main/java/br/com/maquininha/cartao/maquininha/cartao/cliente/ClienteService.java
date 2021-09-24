@@ -16,10 +16,10 @@ public class ClienteService {
     @Autowired
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
-    public Cliente cadastrarCliente(Cliente cliente){
+    public void cadastrarCliente(Cliente cliente){
        String ecode = bCryptPasswordEncoder.encode((cliente.getSenha()));
        cliente.setSenha(ecode);
-       return clienteRepository.save( cliente );
+       clienteRepository.save( cliente );
 
     }
 

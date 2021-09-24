@@ -4,7 +4,6 @@ import br.com.maquininha.cartao.maquininha.cartao.cliente.Cliente;
 import br.com.maquininha.cartao.maquininha.cartao.cliente.ClienteService;
 import br.com.maquininha.cartao.maquininha.cartao.exceptions.ClienteNaoEncontradoException;
 import br.com.maquininha.cartao.maquininha.cartao.exceptions.VendaNaoLocalizadaException;
-import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

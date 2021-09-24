@@ -17,9 +17,9 @@ public class ClienteController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Cliente cadastrarCliente(@RequestBody @Valid ClienteDto clienteDto){
+    public void cadastrarCliente(@RequestBody @Valid ClienteDto clienteDto){
        Cliente clienteModel = clienteDto.converterDtoemCliente();
 
-        return clienteService.cadastrarCliente(clienteModel);
+        clienteService.cadastrarCliente(clienteModel);
     }
 }
