@@ -27,13 +27,13 @@ public class ConfiguracaoDeSeguranca extends WebSecurityConfigurerAdapter {
     private JWTComponente jwtComponente;
 
     private static final String[] GET_PUBLICOS = {
-            "/vendas/{\\d+}",
+
     };
 
     private static final String[] POST_PUBLICOS = {
-            "/vendas",
+            "/vendas/{\\d+}",
             "/login",
-            "/clientes",
+
     };
 
     @Override
