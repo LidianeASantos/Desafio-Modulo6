@@ -35,9 +35,13 @@ public class VendaController {
     }
 
     @GetMapping("/{buscarVendas}")
-    public Venda pesquisarVendaPorId(@PathVariable(name = "buscarVendas") int id, Authentication authentication) {
+    public VendaDto pesquisarVendaPorId(@PathVariable(name = "buscarVendas") int id, Authentication authentication) {
         String email = authentication.getName();
-        return vendaService.buscarVendaPorId( id );
+        vendaService.buscarVendaPorId( id );
+        Venda vendaModel = vendaService.buscarVendaPorId(id);
+
+        return modelMapper.map(vendaModel, VendaDto.class);
+
 
      }
 
