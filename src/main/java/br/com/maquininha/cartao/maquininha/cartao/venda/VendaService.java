@@ -45,4 +45,6 @@ public class VendaService {
 
         return vendaRepository.findAllByOpcao( opcao );
     }
+
+
 }

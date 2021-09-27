@@ -11,6 +11,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/vendas")
@@ -48,9 +49,11 @@ public class VendaController {
     }
 
     @GetMapping("/extrato/{opcao}")
-    public List<Venda> resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao, Authentication authentication ){
+    public List<VendaDto> resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao, Authentication authentication ){
         String email = authentication.getName();
-        return vendaService.buscarVenda( opcao );
+        List<Venda> vendalModel = vendaService.buscarVenda( opcao );
+        List<VendaDto> vendaDtoList = vendalModel.stream().map( venda -> modelMapper.map( venda, VendaDto.class ) ).collect( Collectors.toList());
+        return vendaDtoList;
     }
 
 }
