@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,11 +54,18 @@ public class VendaController {
     }
 
     @GetMapping("/extrato/{opcao}")
-    public List<VendaDto> resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao, Authentication authentication ){
+    public VendaTotalDto resumoDeVendaPorOpcao(@PathVariable(name = "opcao") Opcao opcao, Authentication authentication ){
         String email = authentication.getName();
         List<Venda> vendalModel = vendaService.buscarVenda( opcao );
         List<VendaDto> vendaDtoList = vendalModel.stream().map( venda -> modelMapper.map( venda, VendaDto.class ) ).collect( Collectors.toList());
-        return vendaDtoList;
+
+        VendaTotalDto vendaTotalDto = new VendaTotalDto();
+        vendaTotalDto.setVendas(vendaDtoList);
+
+       double valorTotal = vendaService.getTotalVendas( vendalModel );
+        vendaTotalDto.setValorTotal( valorTotal );
+
+        return vendaTotalDto;
     }
 
 }

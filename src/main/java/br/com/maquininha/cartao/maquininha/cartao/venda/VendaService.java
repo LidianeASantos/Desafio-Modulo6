@@ -7,6 +7,7 @@ import br.com.maquininha.cartao.maquininha.cartao.exceptions.VendaNaoLocalizadaE
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,6 +18,7 @@ public class VendaService {
     private VendaRepository vendaRepository;
     @Autowired
     private ClienteService clienteService;
+    
 
     public Venda cadastrarVenda(int idCliente, Venda venda) throws ClienteNaoEncontradoException {
         Cliente cliente = clienteService.pesquisarClientePorId( idCliente );
@@ -43,8 +45,18 @@ public class VendaService {
 
     public List<Venda> buscarVenda(Opcao opcao){
 
+
+
         return vendaRepository.findAllByOpcao( opcao );
     }
 
+    public double getTotalVendas(List<Venda> vendas){
+        double valorTotal = 0.0;
+        for (Venda percorrer : vendas){
+            valorTotal += percorrer.getValor();
+        }
+        return valorTotal;
+
+    }
 
 }
