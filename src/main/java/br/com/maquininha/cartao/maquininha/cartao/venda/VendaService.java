@@ -55,6 +55,10 @@ public class VendaService {
         for (Venda percorrer : vendas){
             valorTotal += percorrer.getValor();
         }
+
+        for (Venda percorrer : vendas){
+            valorTotal -= percorrer.getTaxa();
+        }
         return valorTotal;
 
     }
